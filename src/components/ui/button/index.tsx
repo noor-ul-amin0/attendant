@@ -4,7 +4,11 @@ import "./styles.css";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   style?: CSSProperties; // Dynamic styles
   label: string; // Button label
-  onClick?: () => void; // Function to be called on click
+  onClick?: (
+    event:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.FormEvent<HTMLFormElement>
+  ) => void; // Function to be called on click
   disabled?: boolean; // Disable button
 }
 
