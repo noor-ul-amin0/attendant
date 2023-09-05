@@ -131,12 +131,11 @@ const Setting = () => {
     setIsOpen(true);
   };
   const handleAddUser = () => {
-    const user = {
+    const user: User = {
       id: users[users.length - 1].id + 1,
       firstName: addRow.firstName,
       lastName: addRow.lastName,
       position: addRow.position,
-      department: addRow.department,
       email: addRow.email,
       role: "user",
       needsPinChange: true,
