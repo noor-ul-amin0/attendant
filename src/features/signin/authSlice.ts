@@ -320,10 +320,16 @@ export const authSlice = createSlice({
         state.isAdmin = user.role === "admin";
       }
     },
-    authenticateUser: (state, action: PayloadAction<User>) => {
-      state.authenicatedUser = action.payload;
+    signin: (
+      state,
+      action: PayloadAction<{ user: User; callback: VoidFunction }>
+    ) => {
+      state.authenicatedUser = action.payload.user;
       state.isAuthenticated = true;
-      state.isAdmin = action.payload.role === "admin";
+      state.isAdmin = action.payload.user.role === "admin";
+      setTimeout(() => {
+        action.payload.callback();
+      }, 500);
     },
   },
 });
@@ -333,7 +339,7 @@ export const {
   updateUser,
   removeUser,
   logout,
-  authenticateUser,
+  signin,
   changeUserPincode,
   changePincodeRequest,
 } = authSlice.actions;

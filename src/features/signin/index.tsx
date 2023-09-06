@@ -11,7 +11,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import {
   UserRole,
-  authenticateUser,
+  signin,
   selectUsers,
   changePincodeRequest,
   selectIsAuthenticated,
@@ -54,8 +54,9 @@ const SignIn = ({ type }: SignInProps) => {
       dispatch(changePincodeRequest(user));
       navigate("/change-password");
     } else {
-      dispatch(authenticateUser(user));
-      navigate(from, { replace: true });
+      dispatch(
+        signin({ user, callback: () => navigate(from, { replace: true }) })
+      );
     }
   };
   const header = type === "user" ? "Sign In as User" : "Sign In as Admin";
